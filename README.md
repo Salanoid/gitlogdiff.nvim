@@ -27,15 +27,15 @@ Works great for: “show me the last N commits, let me pick one (or two) and ope
 ```lua
 {
   "Salanoid/gitlogdiff.nvim",
+  main = "gitlogdiff",
   dependencies = {
     "sindrets/diffview.nvim",
     "folke/snacks.nvim",
   },
-  cmd = "GitLogDiff", -- lazy-load on command
-  opts = {
-    max_count = 300,
-  },
+  cmd = "GitLogDiff",
+  opts = { max_count = 300 },
 }
+
 ```
 
 ### packer.nvim

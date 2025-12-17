@@ -26,7 +26,7 @@ Works great for: “show me the last N commits, let me pick one (or two) and ope
 
 ```lua
 {
-  "Salanoiod/gitlogdiff.nvim",
+  "Salanoid/gitlogdiff.nvim",
   dependencies = {
     "sindrets/diffview.nvim",
     "folke/snacks.nvim",
@@ -42,7 +42,7 @@ Works great for: “show me the last N commits, let me pick one (or two) and ope
 
 ```lua
 use({
-  "Salanoiod/gitlogdiff.nvim",
+  "Salanoid/gitlogdiff.nvim",
   requires = {
     "sindrets/diffview.nvim",
     "folke/snacks.nvim",

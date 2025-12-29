@@ -1,5 +1,7 @@
 # gitlogdiff.nvim
 
+[![CI](https://github.com/Salanoid/gitlogdiff.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/Salanoid/gitlogdiff.nvim/actions/workflows/ci.yml)
+
 A tiny Neovim plugin that shows a simple, keyboard‑driven list of recent Git commits and lets you diff them quickly via Diffview.
 
 Works great for: “show me the last N commits, let me pick one (or two) and open the diff”.
@@ -24,6 +26,8 @@ Works great for: “show me the last N commits, let me pick one (or two) and ope
 
 ### lazy.nvim
 
+<!-- suggested:start -->
+
 ```lua
 {
   "Salanoid/gitlogdiff.nvim",
@@ -35,8 +39,9 @@ Works great for: “show me the last N commits, let me pick one (or two) and ope
   cmd = "GitLogDiff",
   opts = { max_count = 300 },
 }
-
 ```
+
+<!-- suggested:end -->
 
 ### packer.nvim
 

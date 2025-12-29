@@ -1,0 +1,4 @@
+std = "nvim"
+
+[rules]
+unused_variable = "allow"

@@ -15,8 +15,7 @@ T.before_each = function()
   package.loaded["gitlogdiff.ui"] = nil
 end
 
-T.after_each = function()
-end
+T.after_each = function() end
 
 T["move() updates cursor"] = function()
   local ui = require("gitlogdiff.ui")

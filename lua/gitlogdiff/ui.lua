@@ -74,8 +74,12 @@ end
 function M.keymaps()
   local opts = { buffer = M.state.buf, silent = true }
 
-  vim.keymap.set("n", "j", function() M.move(1) end, opts)
-  vim.keymap.set("n", "k", function() M.move(-1) end, opts)
+  vim.keymap.set("n", "j", function()
+    M.move(1)
+  end, opts)
+  vim.keymap.set("n", "k", function()
+    M.move(-1)
+  end, opts)
   vim.keymap.set("n", "<space>", M.toggle, opts)
 
   vim.keymap.set("n", "<CR>", function()

@@ -5,7 +5,8 @@ function M.get_commits(cb)
   local max_count = tonumber(cfg.max_count)
 
   local args = {
-    "git", "log",
+    "git",
+    "log",
     string.format("--max-count=%d", max_count),
     "--pretty=format:%h %ad %s",
     "--date=short",

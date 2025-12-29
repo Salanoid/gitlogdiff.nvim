@@ -1,4 +1,5 @@
 name: CI
+
 on:
   push:
     branches: [main]
@@ -10,6 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install system deps and LuaRocks packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config \
+            libreadline-dev libncurses5-dev libncursesw5-dev
+          sudo apt-get install -y lua5.4 luarocks
+          sudo luarocks install luassert
+          sudo luarocks install luacheck || true
+
       - name: StyLua
         uses: JohnnyMorganz/stylua-action@v4
         with:
@@ -20,10 +31,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install system deps and LuaRocks packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config \
+            libreadline-dev libncurses5-dev libncursesw5-dev
+          sudo apt-get install -y lua5.4 luarocks
+          sudo luarocks install luassert
+          sudo luarocks install luacheck || true
+
       - name: Install Neovim
         uses: rhysd/action-setup-vim@v1
         with:
           neovim: true
           version: stable
+
       - name: Run tests
         run: ./scripts/test

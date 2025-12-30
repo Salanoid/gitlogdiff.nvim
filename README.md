@@ -85,7 +85,7 @@ require("gitlogdiff").setup({
 
 ## Roadmap / Notes
 
-- Currently, selecting two commits diffs A..B. Selecting more than two is not supported and may yield unexpected results.
+- Remove snacks as a dependency.
 
 ## License
 

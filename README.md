@@ -88,6 +88,7 @@ require("gitlogdiff").setup({
 ## Roadmap / Notes
 
 - Remove snacks as a dependency.
+- Should work with other diff viwers plugins for example with: [esmuellert/codediff.nvim]: https://github.com/esmuellert/codediff.nvim
 
 ## License
 

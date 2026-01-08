@@ -6,6 +6,8 @@ A tiny Neovim plugin that shows a simple, keyboard‑driven list of recent Git c
 
 Works great for: “show me the last N commits, let me pick one (or two) and open the diff”.
 
+![Preview](https://i.imgur.com/QthsxGW.gif)
+
 ## Features
 
 - Lists recent commits using `git log` (configurable `max_count`)

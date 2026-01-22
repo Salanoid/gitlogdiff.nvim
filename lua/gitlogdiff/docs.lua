@@ -8,7 +8,6 @@ function M.suggested()
     main = "gitlogdiff",
     dependencies = {
       "sindrets/diffview.nvim",
-      "folke/snacks.nvim",
     },
     cmd = "GitLogDiff",
     opts = { max_count = 300 },
@@ -26,7 +25,6 @@ function M.update()
   main = "gitlogdiff",
   dependencies = {
     "sindrets/diffview.nvim",
-    "folke/snacks.nvim",
   },
   cmd = "GitLogDiff",
   opts = { max_count = 300 },

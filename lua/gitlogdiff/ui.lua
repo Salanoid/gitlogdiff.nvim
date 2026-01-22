@@ -1,6 +1,4 @@
 local api = vim.api
-local snacks = require("snacks")
-
 local M = {}
 
 M.state = {
@@ -22,14 +20,23 @@ function M.open(commits)
   vim.bo[M.state.buf].swapfile = false
   vim.bo[M.state.buf].filetype = "gitlogdiff"
 
-  M.state.win_obj = snacks.win({
-    buf = M.state.buf,
-    width = 90,
-    height = math.min(#commits + 2, 30),
-    title = "Git Commits",
+  local width = 90
+  local height = math.min(#commits + 2, 30)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  M.state.win = api.nvim_open_win(M.state.buf, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = "minimal",
     border = "rounded",
+    title = "Git Commits",
+    title_pos = "center",
   })
-  M.state.win = M.state.win_obj.win
+
   vim.wo[M.state.win].cursorline = true
 
   M.render()
@@ -87,7 +94,9 @@ function M.keymaps()
   end, opts)
 
   vim.keymap.set("n", "q", function()
-    M.state.win_obj:close()
+    if M.state.win and api.nvim_win_is_valid(M.state.win) then
+      api.nvim_win_close(M.state.win, true)
+    end
   end, opts)
 end
 

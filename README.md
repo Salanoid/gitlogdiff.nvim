@@ -22,7 +22,6 @@ Works great for: “show me the last N commits, let me pick one (or two) and ope
 - Git available on your `$PATH`
 - Dependencies:
   - [sindrets/diffview.nvim]
-  - [folke/snacks.nvim]
 
 ## Installation
 
@@ -36,7 +35,6 @@ Works great for: “show me the last N commits, let me pick one (or two) and ope
   main = "gitlogdiff",
   dependencies = {
     "sindrets/diffview.nvim",
-    "folke/snacks.nvim",
   },
   cmd = "GitLogDiff",
   opts = { max_count = 300 },
@@ -52,7 +50,6 @@ use({
   "Salanoid/gitlogdiff.nvim",
   requires = {
     "sindrets/diffview.nvim",
-    "folke/snacks.nvim",
   },
   config = function()
     require("gitlogdiff").setup({
@@ -87,7 +84,6 @@ require("gitlogdiff").setup({
 
 ## Roadmap / Notes
 
-- Remove snacks as a dependency.
 - Should work with other diff viwers plugins for example with: [esmuellert/codediff.nvim]: https://github.com/esmuellert/codediff.nvim
 
 ## License
@@ -95,4 +91,3 @@ require("gitlogdiff").setup({
 MIT — see [LICENSE](./LICENSE).
 
 [sindrets/diffview.nvim]: https://github.com/sindrets/diffview.nvim
-[folke/snacks.nvim]: https://github.com/folke/snacks.nvim

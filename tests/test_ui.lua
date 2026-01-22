@@ -1,16 +1,5 @@
 local T = MiniTest.new_set()
 
-package.loaded["snacks"] = {
-  win = function(opts)
-    local win = vim.api.nvim_get_current_win()
-    vim.api.nvim_win_set_buf(win, opts.buf)
-    return {
-      win = win,
-      close = function() end,
-    }
-  end,
-}
-
 T.before_each = function()
   package.loaded["gitlogdiff.ui"] = nil
 end

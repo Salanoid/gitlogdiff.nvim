@@ -46,7 +46,7 @@ T["actions"]["show_selected() handles non-consecutive commits correctly"] = func
   end
 
   actions.show_selected({ "newer123", "older789" }, { 1, 3 })
-  MiniTest.expect.equality(cmds[1], "DiffviewFileHistory --no-walk newer123 older789")
+  MiniTest.expect.equality(cmds[1], "DiffviewOpen older789^..newer123")
 end
 
 T["log"] = MiniTest.new_set()

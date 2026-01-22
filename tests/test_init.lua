@@ -23,7 +23,7 @@ T["actions"]["show_selected() diffs single commit correctly"] = function()
     table.insert(cmds, cmd)
   end
 
-  actions.show_selected({ "abc1234" })
+  actions.show_selected({ "abc1234" }, { 1 })
   MiniTest.expect.equality(cmds[1], "DiffviewOpen abc1234^..abc1234")
 end
 
@@ -34,8 +34,19 @@ T["actions"]["show_selected() diffs two commits correctly"] = function()
     table.insert(cmds, cmd)
   end
 
-  actions.show_selected({ "def5678", "abc1234" })
-  MiniTest.expect.equality(cmds[1], "DiffviewOpen abc1234 def5678")
+  actions.show_selected({ "newer123", "older456" }, { 1, 2 })
+  MiniTest.expect.equality(cmds[1], "DiffviewOpen older456^..newer123")
+end
+
+T["actions"]["show_selected() handles non-consecutive commits correctly"] = function()
+  local actions = require("gitlogdiff.actions")
+  local cmds = {}
+  vim.cmd = function(cmd)
+    table.insert(cmds, cmd)
+  end
+
+  actions.show_selected({ "newer123", "older789" }, { 1, 3 })
+  MiniTest.expect.equality(cmds[1], "DiffviewFileHistory --no-walk newer123 older789")
 end
 
 T["log"] = MiniTest.new_set()

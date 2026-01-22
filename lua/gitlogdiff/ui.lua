@@ -67,11 +67,22 @@ function M.toggle()
   M.render()
 end
 
+function M.get_selected_indices()
+  local indices = {}
+  for i = 1, #M.state.commits do
+    if M.state.selected[i] then
+      table.insert(indices, i)
+    end
+  end
+  return indices
+end
+
 function M.get_selected_hashes()
   local hashes = {}
-  for i, ok in pairs(M.state.selected) do
-    if ok then
-      local h = M.state.commits[i]:match("^(%w+)")
+  local indices = M.get_selected_indices()
+  for _, i in ipairs(indices) do
+    local h = M.state.commits[i]:match("^(%w+)")
+    if h then
       table.insert(hashes, h)
     end
   end
@@ -90,7 +101,8 @@ function M.keymaps()
   vim.keymap.set("n", "<space>", M.toggle, opts)
 
   vim.keymap.set("n", "<CR>", function()
-    require("gitlogdiff.actions").show_selected(M.get_selected_hashes())
+    local ui = require("gitlogdiff.ui")
+    require("gitlogdiff.actions").show_selected(ui.get_selected_hashes(), ui.get_selected_indices())
   end, opts)
 
   vim.keymap.set("n", "q", function()

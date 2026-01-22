@@ -43,8 +43,17 @@ T["get_selected_hashes() works"] = function()
   ui.state.selected[3] = true
 
   local hashes = ui.get_selected_hashes()
-  table.sort(hashes)
   MiniTest.expect.equality(hashes, { "abc1234", "ghi9012" })
+end
+
+T["get_selected_indices() works"] = function()
+  local ui = require("gitlogdiff.ui")
+  ui.open({ "abc1234 commit1", "def5678 commit2", "ghi9012 commit3" })
+  ui.state.selected[1] = true
+  ui.state.selected[3] = true
+
+  local indices = ui.get_selected_indices()
+  MiniTest.expect.equality(indices, { 1, 3 })
 end
 
 return T

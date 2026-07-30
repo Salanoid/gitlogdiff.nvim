@@ -2,6 +2,9 @@ local M = {}
 
 M.config = {
   max_count = 300,
+  -- "auto" picks diffview.nvim if installed, then codediff.nvim.
+  -- Set to "diffview" or "codediff" to force one.
+  viewer = "auto",
 }
 
 function M.setup(opts)

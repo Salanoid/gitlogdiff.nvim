@@ -12,16 +12,22 @@ Works great for: “show me the last N commits, let me pick one (or two) and ope
 
 - Lists recent commits using `git log` (configurable `max_count`)
 - Toggle selection with space, navigate with `j/k`
-- Press Enter to open diffs in [diffview.nvim]
+- Press Enter to open diffs in [diffview.nvim] or [codediff.nvim]
   - 1 selected commit → diff that commit against its parent (`<hash>^..<hash>`)
-  - 2 selected commits → diff between the two commits
+  - Consecutive commits selected → diff the whole range (`<oldest>^..<newest>`)
+  - Non-consecutive commits selected → combined diff of only the selected
+    commits (like JetBrains' git log): the skipped commits in between are left
+    out. This works by cherry-picking the selection onto a synthetic commit in
+    a temporary worktree; if a skipped commit conflicts with a selected one,
+    the plugin falls back to opening one diff per selected commit.
 
 ## Requirements
 
 - Neovim ≥ 0.10 (uses `vim.system`)
 - Git available on your `$PATH`
-- Dependencies:
-  - [sindrets/diffview.nvim]
+- One diff viewer plugin:
+  - [sindrets/diffview.nvim], or
+  - [esmuellert/codediff.nvim]
 
 ## Installation
 
@@ -66,7 +72,7 @@ Note: This plugin defines the `:GitLogDiff` command on load. If your plugin mana
 - Run `:GitLogDiff` inside a Git repository
 - Navigate with `j/k`
 - Toggle selection with `<space>`
-- Press `<CR>` to open diffs in Diffview
+- Press `<CR>` to open diffs in your diff viewer
 - Press `q` to close the list
 
 ## Configuration
@@ -74,20 +80,24 @@ Note: This plugin defines the `:GitLogDiff` command on load. If your plugin mana
 ```lua
 require("gitlogdiff").setup({
   max_count = 300, -- how many commits to list
+  viewer = "auto", -- "auto" | "diffview" | "codediff"
 })
 ```
+
+With `viewer = "auto"` (the default), the plugin uses [diffview.nvim] if it is
+installed and falls back to [codediff.nvim] otherwise. Set it explicitly if you
+have both and want codediff.
 
 ## Troubleshooting
 
 - “No git commits found”: you are likely not in a Git repo (or `max_count` is 0)
 - “git log failed …”: check that `git` is installed and available in `$PATH`
 
-## Roadmap / Notes
-
-- Should work with other diff viwers plugins for example with: [esmuellert/codediff.nvim]: https://github.com/esmuellert/codediff.nvim
-
 ## License
 
 MIT — see [LICENSE](./LICENSE).
 
 [sindrets/diffview.nvim]: https://github.com/sindrets/diffview.nvim
+[diffview.nvim]: https://github.com/sindrets/diffview.nvim
+[esmuellert/codediff.nvim]: https://github.com/esmuellert/codediff.nvim
+[codediff.nvim]: https://github.com/esmuellert/codediff.nvim

@@ -22,10 +22,7 @@ local function open_diff(from, to)
   elseif viewer == "diffview" then
     vim.cmd(("DiffviewOpen %s..%s"):format(from, to))
   else
-    vim.notify(
-      "gitlogdiff: no diff viewer found (install diffview.nvim or codediff.nvim)",
-      vim.log.levels.ERROR
-    )
+    vim.notify("gitlogdiff: no diff viewer found (install diffview.nvim or codediff.nvim)", vim.log.levels.ERROR)
   end
 end
 

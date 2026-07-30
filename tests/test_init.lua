@@ -187,10 +187,7 @@ T["actions"]["show_selected() falls back to per-commit diffs on conflict"] = fun
   actions.build_combined = original_build
   vim.notify = original_notify
 
-  MiniTest.expect.equality(
-    messages[1]:find("CONFLICT (content): merge conflict in foo.txt", 1, true) ~= nil,
-    true
-  )
+  MiniTest.expect.equality(messages[1]:find("CONFLICT (content): merge conflict in foo.txt", 1, true) ~= nil, true)
   MiniTest.expect.equality(cmds, {
     "DiffviewOpen older789^..older789",
     "DiffviewOpen newer123^..newer123",

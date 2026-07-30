@@ -32,6 +32,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The end-to-end picker test reads this repo's own git log, so it
+          # needs more history than a shallow clone provides.
+          fetch-depth: 0
 
       - name: Install system deps and LuaRocks packages
         run: |
